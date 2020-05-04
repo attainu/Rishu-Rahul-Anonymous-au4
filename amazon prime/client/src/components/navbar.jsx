@@ -5,10 +5,10 @@ class APNavbar extends Component {
   render() {
     return (
       <Navbar expand="lg"
-        className=""
+        className="bg-dark mb-3"
       >
         <Navbar.Brand href="/" className="text-white table">
-          SHAHI DHABHA
+        AMAZON PRIME
         </Navbar.Brand>
       </Navbar>
     );

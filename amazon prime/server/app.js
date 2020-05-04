@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-var userRouter = require('./routes/users');
-app.use('/user', userRouter);
+const indexRouter = require('./routes/index');
+app.use('/' , indexRouter);
 
 
 // catch 404 and forward to error handler

@@ -3,22 +3,21 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 var {DataTypes} = require("sequelize");
 
-let User = db.define('user' ,{
+let Actor = db.define('actor' ,{
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
-      email: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
+      gender: {
         type: DataTypes.STRING,
         allowNull: false,
       }
+
 });
 
-module.exports = User;
+module.exports = Actor ;

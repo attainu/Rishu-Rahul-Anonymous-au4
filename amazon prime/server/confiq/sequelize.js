@@ -9,4 +9,5 @@ db.authenticate().then(() => {
   console.log("Database Connected");
 });
 
+db.sync().then(res => console.log('Tables Created'));
 module.exports = db;
