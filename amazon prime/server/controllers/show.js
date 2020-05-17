@@ -1,9 +1,10 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/director");
 const Genre = require("../models/genre");
-const Show = require('../models/show');
+const Show = require("../models/show");
 const Season = require("../models/season");
+const Episode = require("../models/episode");
 
 const controller = {
   add: async (req, res) => {
@@ -16,18 +17,49 @@ const controller = {
           backdropPath,
           name,
           originalTitle,
-          language
+          overview,
+          rating,
+          language,
+          actorNames,
+          directorNames,
+          genreNames,
         },
       } = req;
       let show = await Show.create({
-          moviedbId,
-          adult,
-          posterPath,
-          backdropPath,
-          name,
-          originalTitle,
-          language
+        moviedbId,
+        adult,
+        posterPath,
+        backdropPath,
+        name,
+        originalTitle,
+        overview,
+        rating,
+        language,
       });
+      actorNames.forEach(async (actorName) => {
+        {
+          console.log(actorName);
+          let actor = await Actor.findAll({ where: { name: actorName } });
+          await show.addActor(actor);
+        }
+      });
+
+      directorNames.forEach(async (directorName) => {
+        {
+          let director = await Director.findAll({
+            where: { name: directorName },
+          });
+          await show.addDirector(director);
+        }
+      });
+
+      genreNames.forEach(async (genreName) => {
+        {
+          let genre = await Genre.findAll({ where: { name: genreName } });
+          await show.addGenre(genre);
+        }
+      });
+
       res.send(show);
     } catch (error) {
       res.json({
@@ -41,13 +73,15 @@ const controller = {
     try {
       const {
         body: {
-            moviedbId,
-            adult,
-            posterPath,
-            backdropPath,
-            name,
-            originalTitle,
-            language
+          moviedbId,
+          adult,
+          posterPath,
+          backdropPath,
+          name,
+          originalTitle,
+          overview,
+          rating,
+          language,
         },
       } = req;
 
@@ -56,17 +90,18 @@ const controller = {
       } = req;
       let show = await Show.update(
         {
-            moviedbId,
-            adult,
-            posterPath,
-            backdropPath,
-            name,
-            originalTitle,
-            language
+          moviedbId,
+          adult,
+          posterPath,
+          backdropPath,
+          name,
+          originalTitle,
+          overview,
+          rating,
+          language,
         },
         { where: { id } }
       );
-      await show.save();
       res.send(show);
     } catch (error) {
       res.json({
@@ -78,7 +113,7 @@ const controller = {
 
   getAll: async (req, res) => {
     try {
-      let show = await Show.findAll({});
+      let show = await Show.findAll({ include :[Genre]});
       res.send(show);
     } catch (error) {
       res.json({
@@ -95,7 +130,12 @@ const controller = {
       } = req;
       let show = await Show.findAll({
         where: { id },
-        // include: [Actor, Director, Genre],
+        include: [
+          { model: Season, include: [Episode] },
+          { model: Genre, attributes: ["name"] },
+          { model: Actor, attributes: ["name"] },
+          { model: Director, attributes: ["name"] },
+        ],
       });
       res.send(show);
     } catch (error) {

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Home from "./components/home";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Switch } from "react-router-dom";
 // import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 import "./App.css";
@@ -9,6 +10,7 @@ import "./App.css";
 class App extends React.Component {
   render() {
     return (
+      <BrowserRouter>
       <div className="App">
         <link
           rel="stylesheet"
@@ -37,6 +39,7 @@ class App extends React.Component {
         />
         <Home />
       </div>
+      </BrowserRouter>
     );
   }
 }

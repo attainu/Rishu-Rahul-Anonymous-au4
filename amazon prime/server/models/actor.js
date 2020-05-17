@@ -16,8 +16,10 @@ let Actor = db.define('actor' ,{
       gender: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
-
+      },
+},
+{
+  timestamps: false,
 });
 
 module.exports = Actor ;

@@ -1,6 +1,6 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/director");
 const Genre = require("../models/genre");
 const Season = require('../models/season');
 const Show = require("../models/show");
@@ -12,14 +12,22 @@ const controller = {
         body: {
             seasonNumber,
             rating,
-            releaseDate
+            releaseDate,
+            overview,
+            posterPath,
+            showId
         },
       } = req;
       let season = await Season.create({
             seasonNumber,
             rating,
-            releaseDate
+            releaseDate,
+            overview,
+            posterPath,
+            showId
       });
+      // let show = await Show.findAll({where : {id:showId}});
+      // await show.setSeason(season);
       res.send(season);
     } catch (error) {
       res.json({
@@ -35,7 +43,9 @@ const controller = {
         body: {
             seasonNumber,
             rating,
-            releaseDate
+            releaseDate,
+            overview,
+            posterPath,
         },
       } = req;
 
@@ -46,11 +56,13 @@ const controller = {
         {
             seasonNumber,
             rating,
-            releaseDate
+            releaseDate,
+            overview,
+            posterPath,
         },
         { where: { id } }
       );
-      await season.save();
+      
       res.send(season);
     } catch (error) {
       res.json({

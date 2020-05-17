@@ -12,14 +12,15 @@ var directorRouter = require('./director');
 var actorRouter = require('./actor');
  
 
-app.use('/user', userRouter);
-app.use('/movie', movieRouter);
-app.use('/episodes', episodeRouter);
-app.use('/show', showRouter);
-app.use('/season', seasonRouter);
-app.use('/movie', genreRouter);
-app.use('/director',directorRouter);
-app.use('/actor',actorRouter);
+router.use('/user', userRouter);
+router.use('/movie', movieRouter);
+router.use('/episode', episodeRouter);
+router.use('/show', showRouter);
+router.use('/season', seasonRouter);
+router.use('/movie', genreRouter);
+router.use('/director',directorRouter);
+router.use('/actor',actorRouter);
+router.use('/genre',genreRouter);
 
 
 

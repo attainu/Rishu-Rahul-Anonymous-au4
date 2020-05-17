@@ -1,6 +1,6 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/director");
 const Genre = require("../models/genre");
 
 const controller = {
@@ -18,6 +18,9 @@ const controller = {
           language,
           rating,
           releaseDate,
+          actorNames,
+          directorNames,
+          genreNames,
         },
       } = req;
       let movie = await Movie.create({
@@ -32,6 +35,30 @@ const controller = {
         rating,
         releaseDate,
       });
+
+      actorNames.forEach(async (actorName) => {
+        {
+          let actor = await Actor.findAll({ where: { name: actorName } });
+          await movie.addActor(actor);
+        }
+      });
+
+      directorNames.forEach(async (directorName) => {
+        {
+          let director = await Director.findAll({
+            where: { name: directorName },
+          });
+          await movie.addDirector(director);
+        }
+      });
+
+      genreNames.forEach(async (genreName) => {
+        {
+          let genre = await Genre.findAll({ where: { name: genreName } });
+          await movie.addGenre(genre);
+        }
+      });
+
       res.send(movie);
     } catch (error) {
       res.json({
@@ -76,7 +103,7 @@ const controller = {
         },
         { where: { id } }
       );
-      await movie.save();
+
       res.send(movie);
     } catch (error) {
       res.json({
@@ -88,7 +115,9 @@ const controller = {
 
   getAll: async (req, res) => {
     try {
-      let movie = await Movie.findAll({});
+      let movie = await Movie.findAll({
+        include: [Actor, Genre, Director],
+      });
       res.send(movie);
     } catch (error) {
       res.json({
@@ -105,7 +134,7 @@ const controller = {
       } = req;
       let movie = await Movie.findAll({
         where: { id },
-        include: [Actor, Director, Genre],
+        include: [Actor, Genre, Director],
       });
       res.send(movie);
     } catch (error) {

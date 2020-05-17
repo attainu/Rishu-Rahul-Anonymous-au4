@@ -17,7 +17,9 @@ let Director = db.define('director' ,{
         type: DataTypes.STRING,
         allowNull: false,
       }
-
+},
+{
+  timestamps: false,
 });
 
 module.exports = Director ;

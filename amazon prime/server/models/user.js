@@ -19,6 +19,9 @@ let User = db.define('user' ,{
         type: DataTypes.STRING,
         allowNull: false,
       }
+},
+{
+  timestamps: false,
 });
 
 module.exports = User;

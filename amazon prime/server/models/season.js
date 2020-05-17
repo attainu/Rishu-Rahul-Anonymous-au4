@@ -21,6 +21,17 @@ let Season = db.define("season", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  overview: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  posterPath: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
+},
+{
+  timestamps: false,
 });
 
 

@@ -1,6 +1,6 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/director");
 const Genre = require("../models/genre");
 
 const controller = {
@@ -40,7 +40,7 @@ const controller = {
         },
         { where: { id } }
       );
-      await genre.save();
+      
       res.send(genre);
     } catch (error) {
       res.json({
@@ -69,7 +69,6 @@ const controller = {
       } = req;
       let genre = await Genre.findAll({
         where: { id }
-        // include: [Movie, Genre],
       });
       res.send(genre);
     } catch (error) {
