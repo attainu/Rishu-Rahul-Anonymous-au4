@@ -34,7 +34,7 @@ let Movie = db.define('movie' ,{
         type: DataTypes.STRING,
         allowNull: false,
       },
-      orignalTitle: {
+      originalTitle: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -53,10 +53,10 @@ let Movie = db.define('movie' ,{
 });
 
 Movie.hasMany(Genre);
-Genre.belongsToMany(Movie);
+Genre.belongsTo(Movie);
 Movie.hasMany(Actor);
-Actor.belongsToMany(Movie);
+Actor.belongsTo(Movie);
 Movie.hasMany(Director);
-Director.belongsToMany(Movie);
+Director.belongsTo(Movie);
 
 module.exports = Movie ;

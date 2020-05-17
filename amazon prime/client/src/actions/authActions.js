@@ -33,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-export const register = ({ firstName, lastName, email, password }) => (
+export const register = ({ firstName, lastName, email, password }) => async (
   dispatch
 ) => {
   // Headers
@@ -50,13 +50,15 @@ export const register = ({ firstName, lastName, email, password }) => (
     email,
     password,
   };
-
+  console.log(body);
+  
+  
   axios
-    .post("/api/auth/register", body, config)
+    .post("http://localhost:3000/user/register", body, config)
     .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data,
+        payload: res,
       })
     )
     .catch((err) => {
@@ -65,9 +67,17 @@ export const register = ({ firstName, lastName, email, password }) => (
       );
       dispatch({
         type: REGISTER_FAIL,
+        payload:"Inavlid Input"
       });
     });
+// let data = await axios.post("http://localhost:3000/user/register", body, config)
+// if(data.status===400){
+//   data = data.json()
+//   console.log(data);
+// }
+
 };
+
 
 // Login User
 export const login = ({ email, password }) => (dispatch) => {
@@ -82,7 +92,7 @@ export const login = ({ email, password }) => (dispatch) => {
   const body = { email, password };
 
   axios
-    .post("/api/auth/login", body, config)
+    .post("http://localhost:3000/user/create-session", body, config)
     .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,

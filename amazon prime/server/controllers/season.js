@@ -1,6 +1,6 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/Director");
 const Genre = require("../models/genre");
 const Season = require('../models/season');
 const Show = require("../models/show");

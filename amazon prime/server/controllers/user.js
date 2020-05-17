@@ -95,7 +95,7 @@ function validateLoginForm(payload) {
 module.exports.signUp = (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
   if (!validationResult.success) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: validationResult.message,
       errors: validationResult.errors,

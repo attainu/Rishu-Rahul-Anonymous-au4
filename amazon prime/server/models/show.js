@@ -6,6 +6,7 @@ const Actor = require('./actor');
 const Director = require('./director');
 const Genre = require('./genre'); 
 const Season = require('./season');
+const Episode = require('./episode');
 
 let Show = db.define('show' ,{
     id: {
@@ -41,14 +42,14 @@ let Show = db.define('show' ,{
 });
 
 Show.hasMany(Genre);
-Genre.belongsToMany(Show);
+Genre.belongsTo(Show);
 Show.hasMany(Actor);
-Actor.belongsToMany(Show);
+Actor.belongsTo(Show);
 Show.hasMany(Director);
-Director.belongsToMany(Show);
+Director.belongsTo(Show);
 Show.hasMany(Season);
 Season.belongsTo(Show);
-Show.hasMany(Episode , {through : Season});
-Episode.belongsTo(Show , { through : Season});
+Show.hasMany(Episode);
+Episode.belongsToMany(Show , { through : Season});
 
 module.exports = Show ;

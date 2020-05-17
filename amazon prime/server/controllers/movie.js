@@ -1,6 +1,6 @@
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const Director = require("../models/movie");
+const Director = require("../models/Director");
 const Genre = require("../models/genre");
 
 const controller = {
@@ -18,6 +18,7 @@ const controller = {
           language,
           rating,
           releaseDate,
+          directorId
         },
       } = req;
       let movie = await Movie.create({
@@ -31,6 +32,7 @@ const controller = {
         language,
         rating,
         releaseDate,
+        directorId
       });
       res.send(movie);
     } catch (error) {
@@ -55,6 +57,7 @@ const controller = {
           language,
           rating,
           releaseDate,
+          directorId
         },
       } = req;
 
@@ -73,6 +76,7 @@ const controller = {
           language,
           rating,
           releaseDate,
+          directorId
         },
         { where: { id } }
       );
@@ -88,7 +92,7 @@ const controller = {
 
   getAll: async (req, res) => {
     try {
-      let movie = await Movie.findAll({});
+      let movie = await Movie.findAll();
       res.send(movie);
     } catch (error) {
       res.json({
