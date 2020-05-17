@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const db = new sequelize("prime", "postgres", "rahul", {// database , user , password
+const db = new sequelize("prime", "postgres", "0123456789", {// database , user , password
     host: "localhost",
     dialect: "postgres"
 });

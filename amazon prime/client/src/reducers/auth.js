@@ -13,7 +13,8 @@ import {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     isLoading: false,
-    user: null
+    user: null,
+    registerMessage:""
   };
   
   export default function(state = initialState, action) {
@@ -32,7 +33,7 @@ import {
           user: action.payload
         };
       case LOGIN_SUCCESS:
-      case REGISTER_SUCCESS:
+        console.log(action.payload);
         localStorage.setItem('token', action.payload.token);
         return {
           ...state,
@@ -40,10 +41,21 @@ import {
           isAuthenticated: true,
           isLoading: false
         };
+        // console.log(state);
+        case REGISTER_SUCCESS:
+          console.log(action.payload);
+          return{
+            ...state,
+            registerMessage : action.payload.data.message
+          }
+          
       case AUTH_ERROR:
       case LOGIN_FAIL:
       case LOGOUT_SUCCESS:
+        
       case REGISTER_FAIL:
+        console.log(action.payload.message);
+        
         localStorage.removeItem('token');
         return {
           ...state,

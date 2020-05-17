@@ -29,16 +29,16 @@ class APSlider extends React.Component {
                 return (
                   <div className="zoom ">
                     <img
-                      className="mr-1"
+                      className="mr-1 slide-image"
                       src={`https://image.tmdb.org/t/p/w500${content.posterPath}`}
                       alt="Alps"
-                      style={{ width: "14.5vw", height : "26vh" ,"border-radius": "5px" , margin : "" }}
+                      // style={{ width: "14.5vw", height : "26vh" ,"border-radius": "5px" , opacity : "0.5" }}
                     />
                     <div className="overlay">
                       <IconButton
                         aria-lable="delete"
                         href={ content.releaseDate ?`/movies/${content.id}` : `/shows/${content.id}`}
-                        className="mt-5 p-1"
+                        className="mt-5 p-1 d-flex justify-content-center"
                       >
                         <PlayCircleFilledIcon
                           fontSize="large"
@@ -46,12 +46,12 @@ class APSlider extends React.Component {
                           // style={{ color: "white" }}
                         />
                       </IconButton>
-                      <p className="text-white font font-weight-bolder p-1 my-text-title" style={{"fontSize" : "1.1rem"}}>
+                      <p className="text-white font font-weight-bolder p-1 my-text-title" style={{"fontSize" : "1.2rem" , "text-align" : "middle"}}>
                         {content.name}
                       </p>
                       <p
                         className="text-white font-weight-bold my-text ml-2 mb-2"
-                        style={{ textAlign: "left", fontSize: "0.7rem" }}
+                        style={{ textAlign: "", fontSize: "0.8rem" }}
                       >
                         {content.overview}
                       </p>

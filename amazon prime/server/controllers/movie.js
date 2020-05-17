@@ -34,6 +34,7 @@ const controller = {
         language,
         rating,
         releaseDate,
+        directorId
       });
 
       actorNames.forEach(async (actorName) => {
@@ -82,6 +83,7 @@ const controller = {
           language,
           rating,
           releaseDate,
+          directorId
         },
       } = req;
 
@@ -100,6 +102,7 @@ const controller = {
           language,
           rating,
           releaseDate,
+          directorId
         },
         { where: { id } }
       );

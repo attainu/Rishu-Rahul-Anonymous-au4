@@ -1,0 +1,191 @@
+.App {
+  text-align: center;
+  /* background: linear-gradient(#e66465, #9198e5); */
+}
+#Main {
+  overflow-x: hidden;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* linear-gradient(to right, #000 40%, transparent 58%), */
+#belowNavbar {
+  background-image: linear-gradient(to right, #000 40%, transparent 20%),
+    url(https://m.media-amazon.com/images/G/31/AmazonVideo/2019/1102620_MLP_1440x675_apv189_V3._SY1200_FMJPG_.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #000;
+  height: 55rem;
+}
+#middle {
+  background-image: url(https://m.media-amazon.com/images/G/01/digital/video/Magellan_MLP/IN-Living-Room-V2._CB524587855_SY1200_FMJPG_.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #000;
+  height: 55rem;
+}
+#info {
+  background-image: url("../../Images/info.png");
+  height: 35rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#fb {
+  background-color: black;
+  text-align: center;
+  color: aliceblue;
+}
+button#Login {
+  margin-left: 63rem;
+  margin-top: -54px;
+  width: 16rem;
+}
+button#Signup {
+  margin-top: -54px;
+  width: 16rem;
+}
+input {
+  width: 80%;
+  text-align: center;
+}
+.navbar-dark bg-dark {
+  overflow: hidden;
+  background-color: #666666;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+/* h3#title {
+    padding-top: 1rem;
+  } */
+
+.para {
+  position: absolute;
+  color: white;
+  margin-top: 18rem;
+  margin-left: 2rem;
+}
+.para2 {
+  padding-top: 13rem;
+  margin-left: 63rem;
+  color: white;
+}
+
+.bgBody {
+  background-image: linear-gradient(to right, black, #12191d);
+  height: 59rem;
+}
+
+.contents {
+  margin-left: -25rem;
+  width: 61rem;
+  color: white;
+  margin-top: 9rem;
+}
+/* .title {
+    margin-top: -4rem;
+    padding-bottom: 3rem;
+    margin-left: -49rem;
+  } */
+
+button.button.play {
+  height: 4rem;
+  /* width: 5rem; */
+  border-style: groove;
+  border-radius: 4rem;
+  margin-left: -4rem;
+  margin-bottom: 2rem;
+}
+.span {
+  margin-left: 7rem;
+  border-style: solid;
+  padding: 2rem;
+  color: white;
+  background-color: grey;
+}
+#buttons {
+  width: 90rem;
+  margin-top: -47rem;
+  margin-left: 33rem;
+}
+#MovieButtons {
+  width: 90rem;
+  margin-top: -42rem;
+  margin-left: 33rem;
+}
+.crew {
+  margin-left: 8rem;
+  margin-top: 3rem;
+}
+
+button#trailer {
+  margin-left: 4rem;
+}
+h4.overview {
+  margin-top: 6rem;
+  margin-left: 26rem;
+}
+
+.title {
+  position: absolute;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  color: white;
+}
+select {
+  width: 9rem;
+  padding: 1rem;
+  background-color: gray;
+  color: white;
+}
+
+/* .dropdown {
+  margin-top: 7rem;
+  margin-left: -99rem;
+} */
+.PosterContainer {
+  margin-top: -5rem;
+  margin-left: 1rem;
+}
+h5.starring {
+  margin-left: 17rem;
+}
+button#watchlist {
+  border-radius: 3rem;
+}
+button#trailer {
+  border-radius: 3rem;
+}

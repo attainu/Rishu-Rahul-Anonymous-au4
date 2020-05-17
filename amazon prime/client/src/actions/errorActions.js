@@ -1,5 +1,5 @@
 import { GET_ERRORS, CLEAR_ERRORS } from './types';
-import { IMsg } from '../../types/interfaces';
+// import { IMsg } from '../../types/interfaces';
 
 // RETURN ERRORS
 export const returnErrors = (msg, status, id = null) => {
