@@ -123,9 +123,9 @@ button#Signup {
 } */
 
 button.button.play {
-  height: 4rem;
-  /* width: 5rem; */
-  border-style: groove;
+  height: 6rem;
+  width: 5rem;
+  border-style: solid;
   border-radius: 4rem;
   margin-left: -4rem;
   margin-bottom: 2rem;
@@ -144,11 +144,11 @@ button.button.play {
 }
 #MovieButtons{
     width: 90rem;
-    margin-top: -42rem;
-    margin-left: 33rem;
+    margin-top: -40rem;
+    margin-left: 32rem;
 }
 .crew {
-  margin-left: 8rem;
+  margin-left: 28rem;
   margin-top: 3rem;
 }
 
@@ -157,7 +157,7 @@ button#trailer {
 }
 h4.overview {
   margin-top: 6rem;
-  margin-left: 26rem;
+  margin-left: 28rem;
 }
 
 .title {
@@ -171,18 +171,17 @@ select {
     padding: 1rem;
     background-color: gray;
     color: white;
+    border-radius: 2rem;
 }
 
 .dropdown {
-  margin-top: 7rem;
-  margin-left: -99rem;
+  margin-top: 3rem;
+  margin-left: 5rem;
+
 }
 .PosterContainer {
-  margin-top: -5rem;
+  margin-top: 46rem;
   margin-left: 1rem;
-}
-h5.starring {
-  margin-left: 17rem;
 }
 button#watchlist {
   border-radius: 3rem;
@@ -190,3 +189,5 @@ button#watchlist {
 button#trailer {
   border-radius: 3rem;
 }
+
+.col-sm-7 {text-align: justify;}

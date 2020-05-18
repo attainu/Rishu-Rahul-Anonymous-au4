@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from "../Layout/Navbar";
+import Footer from "../Layout/Footer"
 
 export default class MovieInfoPage extends Component {
     constructor(){
@@ -279,9 +280,8 @@ export default class MovieInfoPage extends Component {
         return (
             <div className="bgBody">
                 <Navbar />
-                <div className="title">
-                    <h2>{this.state.data.name}</h2>
-                    </div>
+                <div className="row">
+                    <div className="col-sm-7">
                     <div className="dropdown">
                 <select>
                     {this.state.data.seasons && this.state.data.seasons.map((val,index)=>{
@@ -289,26 +289,18 @@ export default class MovieInfoPage extends Component {
                         
                         return(
                         <option key={index}>Season {val.seasonNumber}</option>
-                        // console.log(city.id)
                         )
                     })}
                     
                 </select>
                 </div>
+                    <div className="title">
+                    <h2>{this.state.data.name}</h2>
+                    </div>
                 <div className="PosterContainer">
-                    <img src={`https://image.tmdb.org/t/p/original${this.state.data.posterPath}`}   alt="Alps" style={{
-                        width: '29rem',
-                        'margin-top': '3rem',
-                        'margin-left': '70rem'}}></img>
-                    {/* <div id="poster" style={{
-                         backgroundImage: `url(https://image.tmdb.org/t/p/original${this.state.data.posterPath})`,
-                         backgroundRepeat: 'no-repeat',
-                         backgroundSize: 'cover'
-                    }}>
-                    </div> */}
                     <div className="contents">
-                    <div className="row" id="buttons">
-                    <button className="button play col-sm-1"><i class="fa fa-play"></i></button>
+                    <div className="row" id="MovieButtons">
+                    <button className="button play col-sm-1 btn btn-primary"><i class="fa fa-play"></i></button>
                     <button className="span col-sm-1" id="watchlist">
                     <span><b>Add to Watchlist</b></span>
                     </button>
@@ -316,19 +308,27 @@ export default class MovieInfoPage extends Component {
                     <span><b>Watch Trailer</b></span>
                     </button>
                     </div>
-                   
-                    
                     <h4 className="overview">{this.state.data.overview}</h4>
                     <div className="crew">
-                        <h5>Director : {this.state.data.directors[0].name}</h5>
-                        <h5>Audio Language : {this.state.data.language} </h5>
-                    <h5 className="starring">Starring : {this.state.data.actors && this.state.data.actors.map((val,index)=>{
+                    <h5>Director : {this.state.data.directors[0].name}</h5>
+                    <h5>Starring : {this.state.data.actors[0].name}</h5>
+                    <h5>Audio Language : {this.state.data.language} </h5>
+                    <h5>Starring : {this.state.data.actors && this.state.data.actors.map((val,index)=>{
                         console.log(val)
                         return(
                         <span>{val.name},</span>
                         )
                         
                     })}</h5>
+                    <h5>Genres : {this.state.data.genres && this.state.data.genres.map((val,index)=>{
+                        console.log(val)
+                        return(
+                        <span>{val.name},</span>
+                        )
+                        
+                    })}</h5>
+                    <h5>IMDB Rating : {this.state.data.rating}</h5>
+                    
                     </div>
                     
 
@@ -336,8 +336,15 @@ export default class MovieInfoPage extends Component {
                     
 
                 </div> 
+                    </div>
+                    <div className="col-sm-4">
+                    <img src={`https://image.tmdb.org/t/p/original${this.state.data.posterPath}`}   alt="Alps" style={{
+                        width: '29rem',
+                        'margin-top': '5rem'
+                        }}></img>
+                    </div>
 
-                
+                </div>
             </div>
         )
     }

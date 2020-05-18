@@ -3,6 +3,7 @@ import Navbar from "../Layout/Navbar";
 import SignupModal from "../Home/SingupModal";
 import LoginModal from "../Home/LoginModal";
 import axios from 'axios'
+import Footer from "../Layout/Footer"
 
 class Landing extends Component{
     componentDidMount(){
@@ -37,23 +38,8 @@ class Landing extends Component{
  
                 </div>
                 <div id="info">
-
+                    <Footer />
                 </div>
-                <div className="row">
-                <div className="col-md-12">
-                    <div className="footer p-3 mt-4 text-center bg-dark text-light">
-                        Developed By:
-                        <br></br>
-                        <span className="text-warning font-weight-normal">
-                            <a href="https://www.linkedin.com/in/rishu-raj-308263172/" target='_blank'>
-                            Rishu Raj
-                            </a><br></br>
-                            <a>Rahul Chawla</a>
-                        </span>
-                    </div>
-                </div>
-
-            </div>
 
             </div>
         )

@@ -40,8 +40,8 @@ class App extends React.Component {
         /> */}
         {/* <Home /> */}
         {/* <Landing /> */}
-        <MovieInfoPage />
-        {/* <SeriesInfo /> */}
+        {/* <MovieInfoPage /> */}
+        <SeriesInfo />
       </div>
     );
   }
