@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import Navbar from "../Layout/Navbar";
-import './my.css'
+import Navbar from "../navbar";
+// import Footer from "../Layout/Footer"
+
 export default class MovieInfoPage extends Component {
     constructor(){
         super();
         this.state={
+            "SeasonStatus" : true,
             data :{
                     "id": 5,
                     "moviedbId": 1396,
@@ -115,7 +117,7 @@ export default class MovieInfoPage extends Component {
                             "showId": 5,
                             "episodes": [
                                 {
-                                    "id": 8,
+                                    "id": 1,
                                     "name": "Pilot",
                                     "episodeNumber": 1,
                                     "overview": "When an unassuming high school chemistry teacher discovers he has a rare form of lung cancer, he decides to team up with a former student and create a top of the line crystal meth in a used RV, to provide for his family once he is gone.",
@@ -126,7 +128,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 9,
+                                    "id": 2,
                                     "name": "Cat's in the Bag...",
                                     "episodeNumber": 2,
                                     "overview": "Walt and Jesse attempt to tie up loose ends. The desperate situation gets more complicated with the flip of a coin. Walt's wife, Skyler, becomes suspicious of Walt's strange behavior.",
@@ -137,7 +139,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 10,
+                                    "id": 3,
                                     "name": "...And the Bag's in the River",
                                     "episodeNumber": 3,
                                     "overview": "Walter fights with Jesse over his drug use, causing him to leave Walter alone with their captive, Krazy-8. Meanwhile, Hank has a scared straight moment with Walter Jr. after his aunt discovers he has been smoking pot. Also, Skylar is upset when Walter",
@@ -148,7 +150,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 11,
+                                    "id": 4,
                                     "name": "Cancer Man",
                                     "episodeNumber": 4,
                                     "overview": "Walter finally tells his family that he has been stricken with cancer. Meanwhile, the DEA believes Albuquerque has a new, big time player to worry about. Meanwhile, of a depressed Walter's anger, and Jesse makes a surprise visit to his parents home.",
@@ -159,7 +161,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 12,
+                                    "id": 5,
                                     "name": "Gray Matter",
                                     "episodeNumber": 5,
                                     "overview": "Walter and Skyler attend a former colleague's party. Jesse tries to free himself from the drugs, while Skyler organizes an intervention.",
@@ -170,7 +172,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 13,
+                                    "id": 6,
                                     "name": "Crazy Handful of Nothin'",
                                     "episodeNumber": 6,
                                     "overview": "Walter and Skyler attend a former colleague's party. Jesse tries to free himself from the drugs, while Skyler organizes an intervention.",
@@ -181,7 +183,7 @@ export default class MovieInfoPage extends Component {
                                     "seasonId": 3
                                 },
                                 {
-                                    "id": 14,
+                                    "id": 7,
                                     "name": "A No-Rough-Stuff-Type Deal",
                                     "episodeNumber": 7,
                                     "overview": "Walter accepts his new identity as a drug dealer after a PTA meeting. Elsewhere, Jesse decides to put his aunt's house on the market and Skyler is the recipient of a baby shower.",
@@ -275,40 +277,42 @@ export default class MovieInfoPage extends Component {
         }
 
     }
+
+    handleSeasonSwitch(){
+        console.log("clicked");
+        
+        this.setState({
+            SeasonStatus : true ? false : true 
+        }
+        )
+    }
     render() {
-        return (
-            <div className="bgBody">
-                <Navbar />
-                <div className="title">
-                    <h2>{this.state.data.name}</h2>
-                    </div>
+        console.log(this.state.SeasonStatus);
+        
+        let EpsiodeList ; 
+        if(this.state.SeasonStatus){
+            EpsiodeList = <div>
+                <div className="row">
+                    <div className="col-sm-7">
                     <div className="dropdown">
-                <select>
+                <select onChange={()=>this.handleSeasonSwitch()}>
                     {this.state.data.seasons && this.state.data.seasons.map((val,index)=>{
-                        console.log(val.seasonNumber);
+                        // console.log(val.seasonNumber);
                         
                         return(
                         <option key={index}>Season {val.seasonNumber}</option>
-                        // console.log(city.id)
                         )
                     })}
                     
                 </select>
                 </div>
+                    <div className="title">
+                    <h2>{this.state.data.name}</h2>
+                    </div>
                 <div className="PosterContainer">
-                    <img src={`https://image.tmdb.org/t/p/original${this.state.data.posterPath}`}   alt="Alps" style={{
-                        width: '29rem',
-                        'margin-top': '3rem',
-                        'margin-left': '70rem'}}></img>
-                    {/* <div id="poster" style={{
-                         backgroundImage: `url(https://image.tmdb.org/t/p/original${this.state.data.posterPath})`,
-                         backgroundRepeat: 'no-repeat',
-                         backgroundSize: 'cover'
-                    }}>
-                    </div> */}
                     <div className="contents">
-                    <div className="row" id="buttons">
-                    <button className="button play col-sm-1"><i class="fa fa-play"></i></button>
+                    <div className="row" id="MovieButtons">
+                    <button className="button play col-sm-1 btn btn-primary"><i class="fa fa-play"></i></button>
                     <button className="span col-sm-1" id="watchlist">
                     <span><b>Add to Watchlist</b></span>
                     </button>
@@ -316,19 +320,27 @@ export default class MovieInfoPage extends Component {
                     <span><b>Watch Trailer</b></span>
                     </button>
                     </div>
-                   
-                    
-                    <h4 className="overview">{this.state.data.overview}</h4>
+                    <h4 className="overview">{this.state.data.seasons[0].overview}</h4>
                     <div className="crew">
-                        <h5>Director : {this.state.data.directors[0].name}</h5>
-                        <h5>Audio Language : {this.state.data.language} </h5>
-                    <h5 className="starring">Starring : {this.state.data.actors && this.state.data.actors.map((val,index)=>{
-                        console.log(val)
+                    <h5>Director : {this.state.data.directors[0].name}</h5>
+                    <h5>Starring : {this.state.data.actors[0].name}</h5>
+                    <h5>Audio Language : {this.state.data.language} </h5>
+                    <h5>Starring : {this.state.data.actors && this.state.data.actors.map((val,index)=>{
+                        // console.log(val)
                         return(
                         <span>{val.name},</span>
                         )
                         
                     })}</h5>
+                    <h5>Genres : {this.state.data.genres && this.state.data.genres.map((val,index)=>{
+                        // console.log(val)
+                        return(
+                        <span>{val.name},</span>
+                        )
+                        
+                    })}</h5>
+                    <h5>IMDB Rating : {this.state.data.seasons[0].rating}</h5>
+                    
                     </div>
                     
 
@@ -336,8 +348,157 @@ export default class MovieInfoPage extends Component {
                     
 
                 </div> 
+                    </div>
+                    <div className="col-sm-4">
+                    <img src={`https://image.tmdb.org/t/p/original${this.state.data.seasons[0].posterPath}`}   alt="Alps" style={{
+                        width: '29rem',
+                        'margin-top': '5rem'
+                        }}></img>
+                    </div>
 
+                </div>
                 
+            <div className="row">
+                <div className="col-sm-11 EPSIODES">
+                 {this.state.data.seasons[0].episodes && this.state.data.seasons[0].episodes.map((val,index)=>{
+                        console.log(val)
+                        return(
+                        <div className="episodes">
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <img src={`https://image.tmdb.org/t/p/original${val.stillPath}`}></img>
+                                </div>
+                            <div className="col-sm-6">
+                            <button className="episode button play col-sm-1 btn btn-primary"><i class="fa fa-play"></i></button>
+                                <span className="episodeName">
+                                <b>{val.id} : {val.name}</b>
+                                </span>
+                                <div className="epsidoeOverview">
+                                    <b> {val.overview} </b>
+                                </div>
+                            </div>
+                            <div className="col-sm-3">
+                            <div className="extraDetails">
+                            <div>Rating :    {val.rating}</div>
+                            <div>ReleaseDate:   {val.releaseDate}</div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        )
+                        
+                    })}
+                </div>
+
+            </div>
+            </div> 
+        }else{
+            EpsiodeList = <div>
+                <div className="row">
+                    <div className="col-sm-7">
+                    <div className="dropdown">
+                <select onChange={()=>this.handleSeasonSwitch()}>
+                    {this.state.data.seasons && this.state.data.seasons.map((val,index)=>{
+                        // console.log(val.seasonNumber);
+                        
+                        return(
+                        <option key={index}>Season {val.seasonNumber}</option>
+                        )
+                    })}
+                    
+                </select>
+                </div>
+                    <div className="title">
+                    <h2>{this.state.data.name}</h2>
+                    </div>
+                <div className="PosterContainer">
+                    <div className="contents">
+                    <div className="row" id="MovieButtons">
+                    <button className="button play col-sm-1 btn btn-primary"><i class="fa fa-play"></i></button>
+                    <button className="span col-sm-1" id="watchlist">
+                    <span><b>Add to Watchlist</b></span>
+                    </button>
+                    <button className="span col-sm-1" id="trailer">
+                    <span><b>Watch Trailer</b></span>
+                    </button>
+                    </div>
+                    <h4 className="overview">{this.state.data.seasons[1].overview}</h4>
+                    <div className="crew">
+                    <h5>Director : {this.state.data.directors[0].name}</h5>
+                    <h5>Starring : {this.state.data.actors[0].name}</h5>
+                    <h5>Audio Language : {this.state.data.language} </h5>
+                    <h5>Starring : {this.state.data.actors && this.state.data.actors.map((val,index)=>{
+                        // console.log(val)
+                        return(
+                        <span>{val.name},</span>
+                        )
+                        
+                    })}</h5>
+                    <h5>Genres : {this.state.data.genres && this.state.data.genres.map((val,index)=>{
+                        // console.log(val)
+                        return(
+                        <span>{val.name},</span>
+                        )
+                        
+                    })}</h5>
+                    <h5>IMDB Rating : {this.state.data.seasons[1].rating}</h5>
+                    
+                    </div>
+                    
+
+                    </div>
+                    
+
+                </div> 
+                    </div>
+                    <div className="col-sm-4">
+                    <img src={`https://image.tmdb.org/t/p/original${this.state.data.seasons[1].posterPath}`}   alt="Alps" style={{
+                        width: '29rem',
+                        'margin-top': '5rem'
+                        }}></img>
+                    </div>
+
+                </div>
+                
+            <div className="row">
+                <div className="col-sm-11 EPSIODES">
+                 {this.state.data.seasons[1].episodes && this.state.data.seasons[1].episodes.map((val,index)=>{
+                        console.log(val)
+                        return(
+                        <div className="episodes">
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <img src={`https://image.tmdb.org/t/p/original${val.stillPath}`}></img>
+                                </div>
+                            <div className="col-sm-6">
+                            <button className="episode button play col-sm-1 btn btn-primary"><i class="fa fa-play"></i></button>
+                                <span className="episodeName">
+                                <b>{val.id} : {val.name}</b>
+                                </span>
+                                <div className="epsidoeOverview">
+                                    <b> {val.overview} </b>
+                                </div>
+                            </div>
+                            <div className="col-sm-3">
+                            <div className="extraDetails">
+                            <div>Rating :    {val.rating}</div>
+                            <div>ReleaseDate:   {val.releaseDate}</div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        )
+                        
+                    })}
+                </div>
+
+            </div>
+            </div>
+        }
+        return (
+            <div className="bgBody">
+                <Navbar />
+                {EpsiodeList}
             </div>
         )
     }

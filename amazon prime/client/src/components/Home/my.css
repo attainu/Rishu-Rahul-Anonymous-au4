@@ -105,7 +105,7 @@ input {
 }
 
 .bgBody {
-  background-image: linear-gradient(to right, black, #12191d);
+  background-image: linear-gradient(to right, black,black, #12191d);
   height: 59rem;
 }
 
@@ -144,11 +144,14 @@ button.button.play {
 #MovieButtons {
   width: 90rem;
   margin-top: -42rem;
-  margin-left: 33rem;
+  margin-left: 34rem;
 }
 .crew {
-  margin-left: 8rem;
-  margin-top: 3rem;
+  margin-left: 30rem;
+    margin-top: 3rem;
+}
+img{
+  max-width: 100%;
 }
 
 button#trailer {
@@ -156,13 +159,13 @@ button#trailer {
 }
 h4.overview {
   margin-top: 6rem;
-  margin-left: 26rem;
+    margin-left: 30rem;
 }
 
 .title {
   position: absolute;
-  margin-left: 5rem;
-  margin-top: 2rem;
+  margin-left: 7rem;
+  margin-top: 3rem;
   color: white;
 }
 select {
@@ -172,20 +175,41 @@ select {
   color: white;
 }
 
-/* .dropdown {
+.dropdown {
   margin-top: 7rem;
-  margin-left: -99rem;
-} */
+  margin-left: 7rem;
+}
 .PosterContainer {
-  margin-top: -5rem;
-  margin-left: 1rem;
+  margin-top: 52rem;
+    margin-left: 1rem;
 }
 h5.starring {
   margin-left: 17rem;
 }
 button#watchlist {
   border-radius: 3rem;
+  margin-left: 4rem;
 }
 button#trailer {
   border-radius: 3rem;
+}
+.EPSIODES {
+  margin-left: 6rem;
+}
+
+.episodes {
+  background-color: rgba(27,37,48,.8);
+  color: white;
+  margin-top: 2rem;
+}
+button.episode.button.play.col-sm-1.btn.btn-primary {
+  margin-left: 0rem;
+  margin-top: 2rem;
+}
+span.episodeName {
+  margin: 2rem;
+}
+.extraDetails {
+  margin-top: 3rem;
+  margin-left: 12rem;
 }
