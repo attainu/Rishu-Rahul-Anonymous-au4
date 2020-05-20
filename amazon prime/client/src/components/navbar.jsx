@@ -3,6 +3,7 @@ import {
 MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
 MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem 
 } from "mdbreact";
+import {Redirect} from 'react-router-dom'
 // import { Input } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { BrowserRouter as Router , Link } from 'react-router-dom';
@@ -10,15 +11,22 @@ import { BrowserRouter as Router , Link } from 'react-router-dom';
 class NavbarPage extends Component {
 state = {
   isOpen: false,
-  searchTerm : ""
+  searchTerm : "",
+  toSearchPage : false
 };
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
-handleKeyPress(target) {
-  if(target.charCode==13){
-    console.log(this.state.searchTerm)
+handleKeyPress(event) {
+  if(event.charCode==13){
+    event.preventDefault();
+    if(this.state.searchTerm === ""){
+      return ;
+    }
+   this.setState({
+     toSearchPage : true
+   },()=> {console.log(this.state)})
   } 
 }
 
@@ -28,6 +36,11 @@ if(event.key === "Enter"){
 }
 }
 render() {
+  if(this.state.toSearchPage  === true){
+    // return <Redirect to={`/search?item=${this.state.searchTerm}`} />
+    // const { href } = window.location;
+    window.location.href = `/search?item=${this.state.searchTerm}`
+  }
   return (
       <MDBNavbar   className="mb-3 shadow p-2"
         style ={{"background-color" : "#1C262D"}} expand="md">
@@ -51,7 +64,7 @@ render() {
             <MDBNavItem className="mr-2">
               <MDBFormInline >
                 <div className="md-form my-0">
-                  <input className="form-control mr-sm-2" type="text" onKeyPress={this.handleKeyPress} onChange={e => {this.setState({searchTerm : e.target.value})}} />
+                  <input className="form-control mr-sm-2" type="text" placeholder="Search" onKeyPress={e => {this.handleKeyPress(e)}} onChange={e => {this.setState({searchTerm : e.target.value})}} />
                 </div>
               </MDBFormInline>
             </MDBNavItem>

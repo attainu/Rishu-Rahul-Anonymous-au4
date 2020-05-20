@@ -1,55 +1,45 @@
 const initialState = {
-    searchTerm : "",
-    searchItems :[] ,
-   
-  };
-  
-  export default function (state = initialState, action) {
-    switch (action.type) {
-      case "SEARCHTERM":
-        return { ...state, movies: action.payload };
-      case "DRAMA_MOVIES":
-        let dramaMovies = [];
-        state.movies.forEach((movie) => {
-          console.log(movie);
-          if (movie.genres && movie.genres[0]) {
-            console.log(movie);
-            movie.genres.forEach((genre) => {
-              if (genre.name === "Drama") {
-                dramaMovies.push(movie);
-              }
-            });
-          }
-        });
-        return {
-          ...state,
-          drama: dramaMovies,
-        };
-      case "CRIME_MOVIES":
-        let crimeMovies = [];
-        state.movies.forEach((movie) => {
-          console.log(movie);
-          if (movie.genres && movie.genres[0]) {
-            console.log(movie);
-            movie.genres.forEach((genre) => {
-              if (genre.name === "Crime") {
-                crimeMovies.push(movie);
-              }
-            });
-          }
-        });
-        return {
-          ...state,
-          crime: crimeMovies,
-        };
-      default:
-        return state;
-    }
+  movies: [],
+  tvShows: [],
+  moviesAndShows: [],
+  genres: [],
+  searchItem: [],
+  searchResult: [],
+};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case "SEARCH_MOVIES_FETCHED":
+      console.log(action.payload);
+      return { ...state, movies: action.payload };
+    case "SEARCH_SHOWS_FETCHED":
+      return { ...state, tvShows: action.payload };
+    case "SEARCH_COMBINE_BOTH":
+      let combine = state.movies.concat(state.tvShows);
+      shuffleArray(combine);
+      return { ...state, moviesAndShows: combine };
+    case "SEARCH_GENRE_FETCHED":
+      return { ...state, genres: action.payload };
+    case "SET_SEARCH_ITEM":
+      return { ...state, searchItem: action.payload };
+    case "SEARCH":
+      console.log("search" , state)
+      let arr = state.moviesAndShows.filter(
+        (obj) =>
+          // obj.name.trim().toLowerCase() === state.searchItem.trim().toLowerCase()
+          obj.name.trim().toLowerCase().includes(state.searchItem.trim().toLowerCase())
+      );
+      return { ...state, searchResult: arr };
+    default:
+      return state;
   }
-  
-  const filterArray = (array, fields, value) => {
-    fields = Array.isArray(fields) ? fields : [fields];
-  
-    return array.filter((item) => fields.some((field) => item[field] === value));
-  };
-  
+}
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}

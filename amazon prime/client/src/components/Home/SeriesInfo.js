@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from "../navbar";
 // import Footer from "../Layout/Footer"
 
 export default class MovieInfoPage extends Component {
@@ -497,7 +496,6 @@ export default class MovieInfoPage extends Component {
         }
         return (
             <div className="bgBody">
-                <Navbar />
                 {EpsiodeList}
             </div>
         )

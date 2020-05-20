@@ -6,6 +6,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import Landing from "./components/Home/Landing";
 import MovieInfoPage from "./components/Home/MovieInfoPage"
 import SeriesInfo from "./components/Home/SeriesInfo";
+import MDBNavbar from "./components/navbar";
 // import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 import "./App.css";
@@ -40,10 +41,11 @@ class App extends React.Component {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        {/* <Home /> */}
+        <MDBNavbar/>
+        <Home />
         {/* <Landing /> */}
         {/* <MovieInfoPage /> */}
-        <SeriesInfo />
+        {/* <SeriesInfo /> */}
       </div>
       </BrowserRouter>
     );

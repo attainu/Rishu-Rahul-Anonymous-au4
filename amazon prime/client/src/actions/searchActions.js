@@ -1,19 +1,38 @@
 import axios from 'axios' ;
 
-export const fetchMovies = () => async (dispatch) => {
+export const search = () => async (dispatch) => {
 
     let moviesFetched = await axios.get("http://localhost:3000/movie/all");
-    dispatch({
-        type : "MOVIESPAGE_FETCHED",
+   await dispatch({
+        type : "SEARCH_MOVIES_FETCHED",
         payload : moviesFetched.data
+    })
+    let showsFetched = await axios.get("http://localhost:3000/show/all");
+    await dispatch({
+        type : "SEARCH_SHOWS_FETCHED",
+        payload : showsFetched.data
+    })
+
+    await dispatch({
+        type : "SEARCH_COMBINE_BOTH",
+    })
+    
+    let genreFetched = await axios.get("http://localhost:3000/genre/all");
+    await dispatch({
+        type : "SEARCH_GENRE_FETCHED",
+        payload : genreFetched.data
     });
 
-    dispatch({
-        type : "CRIME_MOVIES",
+    await dispatch({
+        type : "SEARCH"
     })
-
-    dispatch({
-        type : "DRAMA_MOVIES",
-    })
-
 };
+
+export const setSearchItem = (item) => (dispatch) => {
+    console.log('searchAction', item);
+    dispatch({
+        type : "SET_SEARCH_ITEM",
+        payload : item
+    });
+}
+

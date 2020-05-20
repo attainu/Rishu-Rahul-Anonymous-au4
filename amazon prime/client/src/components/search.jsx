@@ -1,39 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Container, Col, Row } from "react-bootstrap";
-import APSlider from './slider/slider'
-import APSliderTwo from './slider/slider2'
-import APCarousel from './slider/carousel'
-import {fetchHomepageData} from '../actions/homepageActions'
+import APSlider from "./slider/slider";
+import APSliderTwo from "./slider/slider2";
+import APCarousel from "./slider/carousel";
+import { search, setSearchItem } from "../actions/searchActions";
+import queryString from "query-string";
 
-class HomePage extends React.Component {
+class Search extends React.Component {
   async componentDidMount() {
-     this.props.fetchHomepageData();
+    const value = queryString.parse(this.props.location.search);
+    console.log("value", value.item);
+    this.props.setSearchItem(value.item);
+    this.props.search();
   }
   render() {
     return (
       <Container fluid>
-      {this.props.tvShows && <APCarousel contents={this.props.tvShows} />}   
-      {this.props.moviesAndShows && <p className="text-white font-weight-bolder text-left mt-1 mb-1"style={{"marginLeft" : "55px"}} > Latest movies and Shows </p>}
-      {this.props.moviesAndShows && <APSlider contents={this.props.moviesAndShows}/>}    
-      {this.props.movies && <p className="text-white font-weight-bolder text-left mt-1 mb-1"style={{"marginLeft" : "55px"}} > Watch Latest movies</p>}
-      {this.props.movies && <APSlider contents={this.props.movies}/>}
-      {this.props.genres && <p className="text-white font-weight-bolder text-left mt-1 mb-1"style={{"marginLeft" : "55px"}} > Watch By Genre</p>}
-      {this.props.genres && <APSliderTwo contents={this.props.genres}/>}
-      {this.props.tvShows && <p className="text-white font-weight-bolder text-left mt-1 mb-1"style={{"marginLeft" : "55px"}} > Watch Latest Shows</p>}
-      {this.props.tvShows && <APSlider contents={this.props.tvShows}/>}
+        {this.props.searchResult && <APSlider contents={this.props.searchResult} />}
       </Container>
     );
   }
 }
 
-const stateMapper = state => {
+const stateMapper = (state) => {
   return {
-    tvShows : state.homepage.tvShows,
-    movies : state.homepage.movies,
-    moviesAndShows : state.homepage.moviesAndShows,
-    genres : state.homepage.genres
+    searchResult: state.search.searchResult,
+    searchItem : state.search.searchItem
   };
 };
 
-export default connect(stateMapper, {fetchHomepageData})(HomePage);
+export default connect(stateMapper, { search , setSearchItem })(Search);
